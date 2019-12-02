@@ -1,0 +1,33 @@
+{
+  "name": "react-typescript-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --mode development --hot",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/colbyschulz/react-typescript-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/colbyschulz/react-typescript-template/issues"
+  },
+  "homepage": "https://github.com/colbyschulz/react-typescript-template#readme",
+  "dependencies": {
+    "@types/react": "16.9.14",
+    "@types/react-dom": "16.9.4",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "source-map-loader": "0.2.4",
+    "ts-loader": "6.2.1",
+    "typescript": "3.7.2",
+    "webpack": "4.41.2",
+    "webpack-cli": "3.3.10"
+  }
+}
