@@ -47,6 +47,10 @@ module.exports = {
   ],
   devServer: {
     historyApiFallback: true,
+    // prevent red error overlay from appearing. All error still appear in console.
+    client: {
+      overlay: false,
+    },
   },
   devtool: 'inline-source-map',
 };
