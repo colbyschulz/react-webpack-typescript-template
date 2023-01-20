@@ -3,7 +3,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const createStyledComponentsTransformer = require('typescript-plugin-styled-components').default;
 const styledComponentsTransformer = createStyledComponentsTransformer();
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const ReactRefreshTypeScript = require('react-refresh-typescript');
 const Dotenv = require('dotenv-webpack');
+
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: './src/index.tsx',
@@ -22,7 +26,10 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'ts-loader',
         options: {
-          getCustomTransformers: () => ({ before: [styledComponentsTransformer] }),
+          getCustomTransformers: () => ({
+            before: [isDevelopment && ReactRefreshTypeScript(), styledComponentsTransformer].filter(Boolean),
+          }),
+          transpileOnly: isDevelopment,
         },
       },
       {
@@ -40,13 +47,15 @@ module.exports = {
     ],
   },
   plugins: [
+    isDevelopment && new ReactRefreshWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
     new Dotenv({ systemvars: true }),
-  ],
+  ].filter(Boolean),
   devServer: {
     historyApiFallback: true,
+    hot: true,
   },
   devtool: 'inline-source-map',
 };
